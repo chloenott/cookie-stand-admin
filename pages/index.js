@@ -2,10 +2,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { render } from 'react-dom'
 import { useState } from 'react'
+import { hours } from '../data'
 
 export default function CookieStandAdmin() {
-
-  let hours = ['6am','7am','8am','9am']
 
   let seattle = {
     name: 'Seattle',
@@ -105,10 +104,10 @@ function CreateForm({handleAddReport}) {
 function ReportTable({hours, reports}) {
   return (
     <table>
-      <th>
-        <td>Location</td>
-        {hours.map(hour => <td key={hour}>{hour}</td>)}
-      </th>
+      <tr>
+        <th>Location</th>
+        {hours.map(hour => <th key={hour}>{hour}</th>)}
+      </tr>
       {reports.map(report => <ResultsRow key={report.name} report={report}/>)}
     </table>
   )
