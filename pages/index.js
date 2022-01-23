@@ -3,6 +3,22 @@ import Image from 'next/image'
 import { render } from 'react-dom'
 
 export default function CookieStandAdmin() {
+
+  // Hours, seattle, wenatchee, and reports are temporary sample data to demonstrate functionality of passing data to child components.
+  let hours = ['6am','7am','8am','9am']
+
+  let seattle = {
+    name: 'Seattle',
+    hourlyData: ['5', '10', '6', '3']
+  }
+
+  let wenatchee = {
+    name: 'Wenatchee',
+    hourlyData: ['3', '3', '1', '9']
+  }
+
+  let reports = [seattle, wenatchee]
+
   return (
     <div>
       <Head>
@@ -13,7 +29,7 @@ export default function CookieStandAdmin() {
 
       <main className="p-6 bg-emerald-50">
         <CreateForm />
-        <ReportTable />
+        <ReportTable hours={hours} reports={reports}/>
       </main>
 
       <Footer />
@@ -70,12 +86,23 @@ function CreateForm() {
   )
 }
 
-function ReportTable() {
-  let data = `{"location":"Barcelona","minCustomers":2,"maxCustomers":4,"avgCookies":2.5}`
+function ReportTable({hours, reports}) {
   return (
-    <div className="w-8/12 m-auto text-sm text-center text-gray-500">
-      <p className="p-6">Report Table Coming Soon...</p>
-      <p>{ data }</p>
-    </div>
+    <table>
+      <th>
+        <td>Location</td>
+        {hours.map(hour => <td key={hour}>{hour}</td>)}
+      </th>
+      {reports.map(report => <ResultsRow key={report.name} report={report}/>)}
+    </table>
+  )
+}
+
+function ResultsRow({report}) {
+  return (
+    <tr>
+      <td>{report.name}</td>
+      {report.hourlyData.map((hourData, index) => <td key={index}>{hourData}</td>)}
+    </tr>
   )
 }
