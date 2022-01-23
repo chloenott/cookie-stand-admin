@@ -25,7 +25,7 @@ export default function CookieStandAdmin() {
         <ReportTable hours={hours} reports={reports} />
       </main>
 
-      <Footer />
+      <Footer reports={reports}/>
     </div>
   )
 }
@@ -40,10 +40,10 @@ function Header({title}) {
   )
 }
 
-function Footer() {
+function Footer({reports}) {
   return (
     <footer className="px-5 py-3 bg-emerald-500">
-      <p className="text-sm">©2022</p>
+      <p className="text-sm">{reports.length} Locations World Wide</p>
     </footer>
   )
 }
