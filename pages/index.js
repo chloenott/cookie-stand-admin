@@ -50,8 +50,6 @@ function Footer() {
 
 function CreateForm({handleAddReport, hours}) {
 
-  const hourly_sales = [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
-
   function handleSubmit(event) {
     event.preventDefault()
 
@@ -103,31 +101,37 @@ function CreateForm({handleAddReport, hours}) {
 }
 
 function ReportTable({hours, reports}) {
-  return (
-    <table className="w-8/12 px-3 pb-2 mx-auto my-5 text-sm rounded bg-emerald-500">
-      <thead>
-        <tr>
-          <th>Location</th>
-          {hours.map(hour => <th key={hour}>{hour}</th>)}
-          <th>Totals</th>
-        </tr>
-      </thead>
-      <tbody>
-        {reports.map(report => <ResultsRow key={report.name} report={report}/>)}
-        <tr>
-          <td className="pl-4 font-bold border border-black">Totals</td>
-          {hours.map((hour, index) =>  
-            <td key={hour} className="pl-4 font-bold border border-black">{reports.reduce((prev, curr) => prev + curr.hourlyData[index], 0)}</td>
-          )}
-          <td className="pl-4 font-bold border border-black">
-            {hours.map((hour, index) => 
-              reports.reduce((prev, curr) => prev + curr.hourlyData[index], 0)
-            ).reduce((prev, curr) => prev + curr, 0)}
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  )
+  if (reports.length > 0) {
+    return (
+      <table className="w-8/12 px-3 pb-2 mx-auto my-5 text-sm rounded bg-emerald-500">
+        <thead>
+          <tr>
+            <th className="text-center">Location</th>
+            {hours.map(hour => <th key={hour}>{hour}</th>)}
+            <th>Totals</th>
+          </tr>
+        </thead>
+        <tbody>
+          {reports.map(report => <ResultsRow key={report.name} report={report}/>)}
+          <tr>
+            <td className="font-bold text-center border border-black">Totals</td>
+            {hours.map((hour, index) =>  
+              <td key={hour} className="pl-4 font-bold border border-black">{reports.reduce((prev, curr) => prev + curr.hourlyData[index], 0)}</td>
+            )}
+            <td className="pl-4 font-bold border border-black">
+              {hours.map((hour, index) => 
+                reports.reduce((prev, curr) => prev + curr.hourlyData[index], 0)
+              ).reduce((prev, curr) => prev + curr, 0)}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    )
+  } else {
+    return (
+      <p className="w-8/12 mx-auto mt-5 text-center">No Cookie Stands Available</p>
+    )
+  }
 }
 
 function ResultsRow({report}) {
