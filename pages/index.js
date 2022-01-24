@@ -6,7 +6,6 @@ import CreateForm from "../components/CreateForm";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useAuth } from '../contexts/auth'
-import { useResource } from '../hooks/useResource'
 
 export default function Home() {
   const { user } = useAuth()
