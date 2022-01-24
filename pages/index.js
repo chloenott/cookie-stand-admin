@@ -5,9 +5,12 @@ import ReportTable from "../components/ReportTable";
 import CreateForm from "../components/CreateForm";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import { useAuth } from '../contexts/auth'
+import { useResource } from '../hooks/useResource'
 
 export default function Home() {
-  const user = ''
+  const { user } = useAuth()
+
   return (
     <div>
       {user ? <CookieStandAdmin /> : <LoginForm />}
@@ -41,9 +44,17 @@ function CookieStandAdmin() {
 }
 
 function LoginForm() {
+
+  const { login } = useAuth()
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    login(event.target.username.value, event.target.password.value)
+  }
+
   return (
     <div className="w-8/12 m-3 mx-auto border-2 border-solid p-7 rounded-xl bg-emerald-300 border-emerald-500">
-      <form>
+      <form onSubmit={handleSubmit}>
         <fieldset>
           <label className="block m-2 mt-0 font-bold text-center" htmlFor="username">USER NAME</label>
           <input className="block w-full p-2 m-2 mx-auto" type="text" name="username" placeholder="User Name"></input>
