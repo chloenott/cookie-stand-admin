@@ -7,6 +7,14 @@ Lab 38 (React 2) adds to lab 37 features:
     - The form allows new locations to be added to the reports table.
     - Small miscellaneous refinements!
 
+Lab 39 (React 3) adds even more features!:
+    - Connects with cookie-stand-api backend for authentication/authorization.
+    - For testing use the following username/password: chloe/asdf
+    - Cookie stand locations can be added using the form, which the backend stores.
+    - The cookie stand table retrieves data from the backend.
+    - A user must log in before access to cookie stand admin is allowed.
+    - Some styling adjustments to a new spec.
+
 ## PRs
 
 - [PR for Lab 38, React 2 on 1-23-20](https://github.com/chloenott/cookie-stand-admin/pull/1)
