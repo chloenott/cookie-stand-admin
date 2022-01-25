@@ -59,7 +59,7 @@ function LoginForm() {
           <input className="block w-full p-2 m-2 mx-auto" type="text" name="username" placeholder="User Name"></input>
           
           <label className="block m-2 mt-5 font-bold text-center" htmlFor="password">PASSWORD</label>
-          <input className="block w-full p-2 m-2 mx-auto" type="password" name="password" placeholder="password"></input>
+          <input className="block w-full p-2 m-2 mx-auto" type="password" name="password" placeholder="Password"></input>
 
           <button className="block w-full p-4 mx-auto mt-12 rounded bg-emerald-500">SIGN IN</button>
         </fieldset>

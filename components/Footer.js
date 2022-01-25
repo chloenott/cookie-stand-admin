@@ -7,7 +7,7 @@ export default function Footer({ reports }) {
 
   return (
     <footer className="px-5 py-3 bg-emerald-500">
-      <p className="text-sm">{resources && resources.length} Locations World Wide</p>
+      <p className="text-sm text-center">{resources && resources.length} Locations World Wide</p>
     </footer>
   );
 }
