@@ -18,3 +18,4 @@ Lab 39 (React 3) adds even more features!:
 ## PRs
 
 - [PR for Lab 38, React 2 on 1-23-20](https://github.com/chloenott/cookie-stand-admin/pull/1)
+- [PR for Lab 39, React 3 on 1-24-20](https://github.com/chloenott/cookie-stand-admin/pull/2)
