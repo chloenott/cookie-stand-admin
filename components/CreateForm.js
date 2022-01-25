@@ -25,7 +25,7 @@ export default function CreateForm({ hours }) {
     }
 
     let report = {
-      owner: user.id,
+      owner: null, // should be user.id, however backend requires obj.owner == request.user for deletion, but user is an object not string. Backend has to be modified. Or, workaround, backend has if obj.owner == None return True.
       maximum_customers_per_hour,
       minimum_customers_per_hour,
       avg_cookies_per_sale,
@@ -37,7 +37,7 @@ export default function CreateForm({ hours }) {
 
   return (
     <form
-      className="w-8/12 px-3 pb-2 mx-auto text-sm rounded-lg bg-emerald-300"
+      className="w-8/12 px-3 pb-2 mx-auto text-sm border-2 border-solid rounded-lg bg-emerald-200 border-emerald-400"
       onSubmit={handleSubmit}
     >
       <h2 className="p-3 text-xl text-center">Create Cookie Stand</h2>
