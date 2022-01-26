@@ -1,7 +1,28 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Head from "next/head";
+import { useState } from "react";
+import { hours } from "../data";
+import ReportTable from "../components/ReportTable";
+import CreateForm from "../components/CreateForm";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { useAuth } from '../contexts/auth'
 
 export default function Home() {
+  const { user } = useAuth()
+
+  return (
+    <div>
+      {user ? <CookieStandAdmin /> : <LoginForm />}
+    </div>
+  )
+}
+
+function CookieStandAdmin() {
+  const [reports, setReports] = useState([]);
+
+  function handleAddReport(report) {
+    setReports([...reports, report]);
+  }
 
   return (
     <div>
@@ -9,66 +30,40 @@ export default function Home() {
         <title>Cookie Stand Admin</title>
       </Head>
 
-      <header className="px-5 py-3 bg-emerald-500">
-          <h1 className="text-3xl">
-            Cookie Stand Admin
-          </h1>
-      </header>
+      <Header title="Cookie Stand Admin" />
 
-      <Main></Main>
+      <main className="p-6 bg-emerald-50">
+        <CreateForm handleAddReport={handleAddReport} hours={hours} />
+        <ReportTable hours={hours} reports={reports} />
+      </main>
 
-      <footer className="px-5 py-3 bg-emerald-500">
-        <p className="text-sm">©2022</p>
-      </footer>
+      <Footer reports={reports} />
     </div>
-  )
+  );
 }
 
-function Main() {
+function LoginForm() {
+
+  const { login } = useAuth()
+
+  async function handleSubmit(event) {
+    event.preventDefault()
+    login(event.target.username.value, event.target.password.value)
+  }
+
   return (
-    <main className="p-6 bg-emerald-50">
-    <Form></Form>
-    <ReportTable></ReportTable>
+    <div className="w-8/12 m-3 mx-auto border-2 border-solid p-7 rounded-xl bg-emerald-300 border-emerald-500">
+      <form onSubmit={handleSubmit}>
+        <fieldset>
+          <label className="block m-2 mt-0 font-bold text-center" htmlFor="username">USER NAME</label>
+          <input className="block w-full p-2 m-2 mx-auto" type="text" name="username" placeholder="User Name"></input>
+          
+          <label className="block m-2 mt-5 font-bold text-center" htmlFor="password">PASSWORD</label>
+          <input className="block w-full p-2 m-2 mx-auto" type="password" name="password" placeholder="Password"></input>
 
-  </main>
-  )
-}
-
-function Form() {
-  return (
-    <form className="w-8/12 p-3 mx-auto text-sm rounded-lg bg-emerald-300">
-      <h2 className="text-xl text-center">Create Cookie Stand</h2>
-
-      <div className="flex m-2">
-        <label className="pr-2">Location</label>
-        <input name="location" value="Barcelona" className="flex-grow bg-blue-100"></input>
-      </div>
-
-      <div className="flex mt-5">
-        <div className="w-1/4 mx-3 my-2">
-          <label className="block mx-auto text-center">Minimum Customers per Hour</label>
-          <input name="min_cust_per_hour" value="2" className="w-full"></input>
-        </div>
-        <div className="w-1/4 mx-3 my-2">
-          <label className="block mx-auto text-center">Maximum Customers per Hour</label>
-          <input name="max_cust_per_hour" value="2" className="w-full"></input>
-        </div>
-        <div className="content-center w-1/4 mx-3 my-2">
-          <label className="block text-center">Average Cookies per Sale</label>
-          <input name="avg_cookies_per_sale" value="2" className="w-full"></input>
-        </div>
-        <button className="flex-grow w-1/4 mx-auto bg-emerald-500">Create</button>
-      </div>
-    </form>
-  )
-}
-
-function ReportTable() {
-  let data = `{"location":"Barcelona","minCustomers":2,"maxCustomers":4,"avgCookies":2.5}`
-  return (
-    <div className="w-8/12 m-auto text-sm text-center text-gray-500">
-      <p className="p-6">Report Table Coming Soon...</p>
-      <p>{ data }</p>
+          <button className="block w-full p-4 mx-auto mt-12 rounded bg-emerald-500">SIGN IN</button>
+        </fieldset>
+      </form>
     </div>
   )
 }

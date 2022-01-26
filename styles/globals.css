@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+tbody tr:nth-child(odd) {
+    background: #6ee7b7
+}
+tbody tr:nth-child(even) {
+    background: #a7f3d0
+}
