@@ -3,10 +3,11 @@ export default function CreateForm({ handleAddReport, hours }) {
     event.preventDefault();
 
     let hourlyData = [];
+    
     for (let hour in hours) {
-      max_cust_per_hour = parseFloat(event.target.max_cust_per_hour.value);
-      min_cust_per_hour = parseFloat(event.target.min_cust_per_hour.value);
-      avg_cookies_per_sale = parseFloat(
+      let max_cust_per_hour = parseFloat(event.target.max_cust_per_hour.value);
+      let min_cust_per_hour = parseFloat(event.target.min_cust_per_hour.value);
+      let avg_cookies_per_sale = parseFloat(
         event.target.avg_cookies_per_sale.value
       );
 
