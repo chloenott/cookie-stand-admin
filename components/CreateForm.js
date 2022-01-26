@@ -10,9 +10,9 @@ export default function CreateForm({ hours }) {
     event.preventDefault();
 
     let hourlyData = [];
-    maximum_customers_per_hour = parseInt(event.target.maximum_customers_per_hour.value);
-    minimum_customers_per_hour = parseInt(event.target.minimum_customers_per_hour.value);
-    avg_cookies_per_sale = parseFloat(
+    let maximum_customers_per_hour = parseInt(event.target.maximum_customers_per_hour.value);
+    let minimum_customers_per_hour = parseInt(event.target.minimum_customers_per_hour.value);
+    let avg_cookies_per_sale = parseFloat(
       event.target.avg_cookies_per_sale.value
     );
     for (let hour in hours) {
